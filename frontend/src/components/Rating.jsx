@@ -1,6 +1,6 @@
 import { FaStarHalfAlt, FaRegStar, FaStar } from "react-icons/fa";
 
-const Rating = ({ value, text, color }) => {
+const Rating = ({ value, text }) => {
   let ratingInStar = [];
 
   for (let i = 1; i <= 5; i++) {
