@@ -1,0 +1,29 @@
+{
+  "name": "e-comm-mern-project",
+  "version": "1.0.0",
+  "description": "e-comm backend ",
+  "type": "module",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "server": "nodemon backend/server.js",
+    "client": "npm run dev --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Santu-Yadav/e-commerce-mern.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Santu-Yadav/e-commerce-mern/issues"
+  },
+  "homepage": "https://github.com/Santu-Yadav/e-commerce-mern#readme",
+  "dependencies": {
+    "concurrently": "^9.2.1",
+    "express": "^5.2.1",
+    "nodemon": "^3.1.11",
+    "react-router": "^7.12.0"
+  }
+}
