@@ -1,8 +1,14 @@
 import express from "express";
+import dotenv from "dotenv";
+import cors from "cors";
+dotenv.config();
 import products from "./data/products.js";
 
 const app = express();
-const port = process.env.PORT || 3000;
+
+const port = process.env.PORT || 5000;
+
+app.use(cors({ origin: "http://localhost:5173" }));
 
 app.get("/api/products", (req, res) => {
   res.json(products);
