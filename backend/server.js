@@ -5,6 +5,7 @@ dotenv.config();
 
 import connectDB from "./config/db.js";
 import router from "./router/productRouter.js";
+import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 
 const app = express();
 
@@ -19,6 +20,9 @@ app.use("/api/products", router);
 app.get("/", (req, res) => {
   res.send("App is running");
 });
+
+app.use(notFound);
+app.use(errorHandler);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
