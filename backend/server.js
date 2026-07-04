@@ -16,6 +16,14 @@ connectDB();
 app.use(cors({ origin: "http://localhost:5173" }));
 
 app.use("/api/products", router);
+// 30-June-2026: understand this part later.
+// app.use(
+//   "/api/products/",
+//   asyncHandler(async (req, res) => {
+//     const products = await Product.find({});
+//     res.json(products);
+//   }),
+// );
 
 app.get("/", (req, res) => {
   res.send("App is running");
