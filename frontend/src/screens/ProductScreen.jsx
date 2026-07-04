@@ -5,7 +5,7 @@ import Rating from "../components/Rating";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 
-import { useGetProductDetailsQuery } from "../slices/productSlice";
+import { useGetProductDetailsQuery } from "../slices/productsApiSlice";
 
 const ProductScreen = () => {
   const { id: productId } = useParams();
