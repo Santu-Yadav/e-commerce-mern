@@ -4,7 +4,8 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import connectDB from "./config/db.js";
-import router from "./router/productRouter.js";
+import productRoutes from "./routes/productRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 
 const app = express();
@@ -15,15 +16,8 @@ connectDB();
 
 app.use(cors({ origin: "http://localhost:5173" }));
 
-app.use("/api/products", router);
-// 30-June-2026: understand this part later.
-// app.use(
-//   "/api/products/",
-//   asyncHandler(async (req, res) => {
-//     const products = await Product.find({});
-//     res.json(products);
-//   }),
-// );
+app.use("/api/products", productRoutes);
+app.use("/api/users", userRoutes);
 
 app.get("/", (req, res) => {
   res.send("App is running");
