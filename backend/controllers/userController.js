@@ -9,6 +9,11 @@ const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
 
+  if (!user || (await User.matchPassword(password))) {
+    res.status(401);
+    throw new Error("Invalid Email or Password");
+  }
+
   const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
     expiresIn: "1h",
   });
@@ -21,17 +26,12 @@ const authUser = asyncHandler(async (req, res) => {
     maxAge: 60 * 60 * 1000,
   });
 
-  if (user && (await User.matchPassword(password))) {
-    res.json({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      isAdmin: user.isAdmin,
-    });
-  } else {
-    res.status(401);
-    throw new Error("Invalid Error or Password");
-  }
+  res.json({
+    _id: user._id,
+    name: user.name,
+    email: user.email,
+    isAdmin: user.isAdmin,
+  });
 });
 
 // @desc    Register a new user
@@ -40,6 +40,18 @@ const authUser = asyncHandler(async (req, res) => {
 const registerUser = asyncHandler(async (req, res) => {
   res.send("register user");
 });
+
+// @desc    Logout user / clear cookie
+// @route   POST /api/users/logout
+// @access  Public
+const logoutUser = (req, res) => {
+  res.cookie("jwt", " ", {
+    httpOnly: true,
+    expires: new date(0),
+  });
+
+  res.status(200).json({ message: "logged out successfully" });
+};
 
 // @desc    Get user profile
 // @route   GET /api/users/profile
@@ -87,6 +99,7 @@ export {
   authUser,
   deleteUser,
   getUserById,
+  logoutUser,
   getUserProfile,
   getUsers,
   registerUser,

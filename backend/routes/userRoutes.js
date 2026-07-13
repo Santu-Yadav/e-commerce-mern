@@ -4,6 +4,7 @@ import {
   authUser,
   deleteUser,
   getUserById,
+  logoutUser,
   getUserProfile,
   getUsers,
   registerUser,
@@ -17,6 +18,7 @@ const router = express.Router();
 
 router.route("/").post(registerUser).get(protect, admin, getUsers);
 router.post("/auth", authUser);
+router.param("/logout", logoutUser);
 router
   .route("/profile")
   .get(protect, getUserProfile)
