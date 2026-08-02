@@ -9,6 +9,8 @@ import ProductScreen from "./screens/productScreen.jsx";
 import CartScreen from "./screens/CartScreen";
 import LoginScreen from "./screens/LoginScreen.jsx";
 import RegisterScreen from "./screens/RegisterScreen.jsx";
+import ShippingScreen from "./screens/shippingScreen.jsx";
+import Payment from "./screens/Payment.jsx";
 
 import store from "./store";
 import { Provider } from "react-redux";
@@ -23,6 +25,8 @@ createRoot(document.getElementById("root")).render(
           <Route path="/cart" element={<CartScreen />} />
           <Route path="/login" element={<LoginScreen />} />
           <Route path="/register" element={<RegisterScreen />} />
+          <Route path="/shipping" element={<ShippingScreen />} />
+          <Route path="/payment" element={<Payment />} />
         </Route>
       </Routes>
     </BrowserRouter>
